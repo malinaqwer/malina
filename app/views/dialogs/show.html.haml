@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Ip:
+  = @dialog.ip
+%p
+  %b Coordinates:
+  = @dialog.coordinates
+%p
+  %b City:
+  = @dialog.city
+
+= link_to 'Edit', edit_dialog_path(@dialog)
+\|
+= link_to 'Back', dialogs_path

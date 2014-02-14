@@ -1,4 +1,15 @@
 Mongo::Application.routes.draw do
+  resources :messages
+
+  resources :dialogs do
+    get :enter, on: :collection
+  end
+
+  devise_for :users
+  resources :users
+
+  resources :pages
+
   resources :areas
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -8,6 +19,7 @@ Mongo::Application.routes.draw do
   root 'areas#index'
   get 'sitemap' => 'areas#sitemap'
   get ':id' => 'areas#show'
+  get ':id/:page' => 'areas#show'
 
   # Example of regular route:
 

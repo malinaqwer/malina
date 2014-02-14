@@ -8,11 +8,17 @@ class AreasController < ApplicationController
   end
   
   def sitemap
+    @areas = Area.all
+    @pages = Page.limit(100)
   end
 
   # GET /areas/1
   # GET /areas/1.json
   def show
+    if params[:page].present?
+      @page = Page.find(params[:page])
+    end
+    @pages = Page.all
   end
 
   # GET /areas/new

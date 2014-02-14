@@ -1,0 +1,28 @@
+- content_for :js do
+  = javascript_include_tag "http://js.pusherapp.com/2.1/pusher.js"
+
+- if current_user.present?
+  %h2 Админ
+  - dialog = Dialog.where(id: params[:dialog]).first
+  - if dialog.present?
+    %b#dialog_id= params[:dialog]
+    #control_chat
+      %textarea#message.form-control{ rows:"3" }
+      %a#send_message.btn.btn-default Отправить
+  #messages_admin
+  - if dialog.present?
+    - dialog.messages.each do |message|
+      %b=message.author
+      %i=message.text
+      %br 
+  - content_for :js do
+    = javascript_include_tag 'pusher_admin'
+- else
+  .jumbotron
+    %h2 Чат
+    #control_chat
+      %textarea#message.form-control{ rows:"3" }
+      %a#send_message.btn.btn-default Отправить
+    #messages_client
+  - content_for :js do
+    = javascript_include_tag 'pusher_client'

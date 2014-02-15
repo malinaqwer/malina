@@ -39,4 +39,5 @@
 %hr
   %small{style: 'font-size:9px;'}
     - @pages.each do |page|
-      %a{href: ('/' + @area.slug + '/' + page.slug)}= page.title
+      %a{href: ('/' + @area.slug + '/' + page.slug)}= page.title + ' ' + @area.title
+      \|

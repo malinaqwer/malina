@@ -1,8 +1,10 @@
 require File.expand_path('../boot', __FILE__)
 
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "sprockets/railtie"
+require "rails/all" 
+# require "action_controller/railtie"
+# require "action_mailer/railtie"
+# require "active_resource/railtie"
+# require "sprockets/railtie" # Uncomment this line for Rails 3.1+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

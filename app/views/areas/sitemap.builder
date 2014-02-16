@@ -1,4 +1,4 @@
-domain = 'http://kupispais/'
+domain = 'http://kupilegal.ru/'
 xml.instruct!              # for the <?xml version="1.0" encoding="UTF-8"?> line
 xml.urlset do               # xml.foo creates foo element
   @areas.each do |area|

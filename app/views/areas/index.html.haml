@@ -7,7 +7,7 @@
       %th
       %th
   %tbody
-    - @areas.each do |area|
+    - @areas.try(:each) do |area|
       %tr
         %td
           %a{href: ('/' + area.slug)}= area.title

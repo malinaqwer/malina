@@ -18,8 +18,8 @@ Mongo::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'areas#index'
   get 'sitemap' => 'areas#sitemap'
-  # get ':id' => 'areas#show'
-  # get ':id/:page' => 'areas#show'
+  get ':id' => 'areas#show'
+  get ':id/:page' => 'areas#show'
 
   # Example of regular route:
 

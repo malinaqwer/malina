@@ -7,14 +7,14 @@ class Message
   
   belongs_to :dialog
   
-  after_create :pusher
+  before_create :pusher
   
   def pusher
-    if self.author == 'admin'
-      # Pusher['52fe88a14d6163b5ad0d0000'].trigger('message', {text: 'fuck'})
-      Pusher[self.dialog_id].trigger('message', { text: self.text, author: 'admin'})
-    elsif self.author == 'parya'
-      Pusher['admin'].trigger('message', { id: self.dialog.id.to_s, text: self.text, author: 'parya' })
+    dialog_id = self.dialog_id.to_s
+    if self.author == "admin"
+      Pusher[dialog_id].trigger('message_send', { text: self.text, author: 'admin'})
+    else
+      Pusher['admin'].trigger('message_send', { id: dialog_id, text: self.text, author: 'parya' })
     end
   end
   

@@ -9,10 +9,17 @@ console.log pusher
 
 $(document).ready ->
 
+  audio_start = () ->
+    $('#audio_chat')[0].play()
+    $('.jumbotron').hover ->
+      $('#audio_chat')[0].currentTime = 0
+      $('#audio_chat')[0].pause()
+      
+
   add_message = (data) ->
-    console.log data
     ht = $('<b>' + data.author + ': </b><i>' + data.text + '</i><br>')
     $('#messages_client').prepend ht
+    audio_start()
 
 
   $(window).load ->
@@ -22,14 +29,11 @@ $(document).ready ->
       on: _on,
       path: document.URL
     , (data) ->
-      console.log data
       localStorage.setItem('on', data.on)
       $('#send_message').attr('c', data.on)
       channel = pusher.subscribe(data.on)
-      console.log data.on
-      console.log channel
 
-      channel.bind "message", (data) ->
+      channel.bind "message_send", (data) ->
         add_message data
 
 
@@ -49,7 +53,8 @@ $(document).ready ->
     $("#loading").fadeIn()
     $("#message-overlay").fadeIn 200
     $("#message").blur()
-    add_message {text: message, author: 'parya'}
+    ht = $('<b>parya: </b><i>' + message + '</i><br>')
+    $('#messages_client').prepend ht
     $.post "/messages",
       d: $(@).attr('c'),
       m: message,

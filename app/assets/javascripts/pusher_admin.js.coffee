@@ -5,17 +5,23 @@ channel = pusher.subscribe('admin')
 channel.bind "enter", (data) ->
   enter data
 
-channel.bind "message", (data) ->
-  message data
+channel.bind "message_send", (data) ->
+  message_send data
 
 
 enter = (data) ->
   $('#messages_admin').prepend 'вход на стр: ' + data.path + ' - <a class="btn btn-xs btn-default" href="?dialog=' + data.on + '">' + data.on + '</a>'
+  audio_start()
 
-message = (data) ->
+message_send = (data) ->
   $('#messages_admin').prepend '<a class="btn btn-xs btn-default" href="?dialog=' + data.id + '">' + data.text + '</a><br>'
+  audio_start()
 
-
+audio_start = () ->
+  $('#audio_chat')[0].play()
+  $('.jumbotron').hover ->
+    $('#audio_chat')[0].currentTime = 0
+    $('#audio_chat')[0].pause()
 
 
 

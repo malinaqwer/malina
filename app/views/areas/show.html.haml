@@ -34,10 +34,3 @@
   .col-sm-4
     %h3 Отзывы
   .col-sm-4
-
-
-%hr
-  %small{style: 'font-size:9px;'}
-    - @pages.each do |page|
-      %a{href: ('/' + @area.slug + '/' + page.slug)}= page.title + ' ' + @area.title
-      \|

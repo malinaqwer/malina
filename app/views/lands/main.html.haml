@@ -1,0 +1,8 @@
+- if current_user
+  = link_to destroy_user_session_path, method: 'delete', class: 'btn btn-default' do
+    Выход
+
+= render 'templates/chat'
+= render 'templates/catalog'
+%hr
+= render 'templates/reviews'

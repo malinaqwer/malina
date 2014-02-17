@@ -16,7 +16,7 @@ Mongo::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'areas#index'
+  root 'lands#main'
   get 'sitemap' => 'areas#sitemap'
   get ':id' => 'areas#show'
   get ':id/:page' => 'areas#show'

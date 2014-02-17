@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_filter :admin_user, only: [:edit, :update, :destroy, :create, :new]
 
   # GET /pages
   # GET /pages.json
@@ -70,5 +71,9 @@ class PagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
       params.require(:page).permit(:title)
+    end
+    
+    def admin_user
+      redirect_to root_path unless current_user.try(:admin)
     end
 end

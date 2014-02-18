@@ -10,8 +10,8 @@ class AreasController < ApplicationController
   
   def sitemap
     i = params[:page].to_i
-    min = (i - 1)*100 + 1
-    max = i*100
+    min = (i - 1)*90 + 1
+    max = i*90
     @pages = Page.all
     @areas = Area.all[min..max]
   end

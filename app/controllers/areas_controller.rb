@@ -14,6 +14,8 @@ class AreasController < ApplicationController
     max = i*80
     @pages = Page.all
     @areas = Area.all[min..max]
+    # @pages = Page.limit(2)
+    # @areas = Area.limit(2)
   end
 
   # GET /areas/1

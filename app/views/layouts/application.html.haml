@@ -17,7 +17,7 @@
     .container
       = yield
 
-    %small
-      - @pages.each do |p|
-        %a{href: ('http://kupilegal.ru/' + @area.slug + '/' + p.slug)}= p.title + ' ' + @area.title
+    -#%small
+    -#  - @pages.each do |p|
+    -#    %a{href: ('http://kupilegal.ru/' + @area.slug + '/' + p.slug)}= p.title + ' ' + @area.title
     = render 'templates/ya'

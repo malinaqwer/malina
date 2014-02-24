@@ -1,7 +1,10 @@
 !!!
 %html
   %head
-    %title= "Купить спайс, соль, курительные смеси" + ((' - ' + @area.title.to_s ) if @area.present?).to_s
+    - if @page.present? && @area.present?
+      %title= @page.title.to_s + ' ' + @area.title
+    - else
+      %title= "Купить спайс, соль, курительные смеси" + ((' - ' + @area.title.to_s ) if @area.present?).to_s
     %meta{content: 'Закладки, Легал, Купить спайс, Соль для ванн, Курительные смеси', name: "Keywords"}
     %meta{content: 'Проверенный магазин, отзывы клиентов, купи открытку и оставь свой отзыв следующим', name: "Description"}
     %meta{name: "google-site-verification", content: "MhLyNTyOFdTfX9SXLhP350q8Q91v6NkWOetOkujYqiU"}
@@ -14,10 +17,3 @@
     .container
       = yield
     = render 'templates/ya'
-
-
--# 79653827089a@gmail.com asdbnm123
-
--# gmail 79653827089a@gmail.com 796538270891
-
--# mmmongo mmmongoYanRu	

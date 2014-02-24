@@ -3,7 +3,7 @@ class Dialog
   field :ip, type: String
   field :coordinates, type: Array
   field :city, type: String
-  
+  field :url_start
   has_many :messages
   
   

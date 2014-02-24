@@ -9,6 +9,11 @@ console.log pusher
 
 $(document).ready ->
 
+  parseUrl = (url) ->
+    a = document.createElement("a")
+    a.href = url
+    a
+
   audio_start = () ->
     $('#audio_chat')[0].play()
     $('.jumbotron').hover ->
@@ -24,10 +29,17 @@ $(document).ready ->
 
   $(window).load ->
     _on = localStorage.getItem('on')
+    url = parseUrl document.URL
+    if _on is null
+      localStorage.setItem('on_start', url.pathname)
+      console.log localStorage.getItem('on_start')
+    else
+      console.log localStorage.getItem('on_start')
     $.get "/dialogs/enter",
       status: 'enter',
       on: _on,
-      path: document.URL
+      path: document.URL,
+      url: url.pathname
     , (data) ->
       localStorage.setItem('on', data.on)
       $('#send_message').attr('c', data.on)

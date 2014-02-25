@@ -2,6 +2,7 @@
 
 %table.table.table-bordered.table-condensed
   %tr
+    %th Вход
     %th Ip
     %th Город
     %th Страна
@@ -14,6 +15,7 @@
   - @dialogs.each do |dialog|
     %tr
       - geo = Geocoder.search dialog.ip
+      %td= dialog.url_start
       %td= geo[0].data['ip']
       %td= geo[0].data['city']
       %td= geo[0].data['country_name']

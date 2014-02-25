@@ -28,7 +28,7 @@ class DialogsController < ApplicationController
     else
       @dialog = Dialog.create(ip: request.remote_ip, url_start: params[:url])
     end
-    a = @dialog.split('/')
+    a = @dialog.url_start.split('/')
     Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
     render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages }
   end

@@ -14,6 +14,7 @@ enter = (data) ->
   audio_start()
 
 message_send = (data) ->
+  console.log data
   $('#messages_admin').prepend '<a class="btn btn-xs btn-default" href="?dialog=' + data.id + '">' + data.text + '</a><br>'
   audio_start()
 

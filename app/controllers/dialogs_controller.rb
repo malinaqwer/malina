@@ -11,6 +11,7 @@ class DialogsController < ApplicationController
   # GET /dialogs/1
   # GET /dialogs/1.json
   def show
+    @messages = @dialog.messages
   end
 
   # GET /dialogs/new

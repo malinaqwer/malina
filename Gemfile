@@ -11,7 +11,7 @@ gem "bson_ext"
 gem 'devise'
 
 gem 'mongoid_slug'
-
+gem 'geocoder'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

@@ -1,8 +1,10 @@
 %h1 Listing dialogs
 
-%table
+%table.table.table-bordered.table-condensed
   %tr
     %th Ip
+    %th Город
+    %th Страна
     %th Coordinates
     %th City
     %th
@@ -11,7 +13,10 @@
 
   - @dialogs.each do |dialog|
     %tr
-      %td= dialog.ip
+      - geo = Geocoder.search dialog.ip
+      %td= geo[0].data['ip']
+      %td= geo[0].data['city']
+      %td= geo[0].data['country_name']
       %td= dialog.coordinates
       %td= dialog.city
       %td= link_to 'Show', dialog

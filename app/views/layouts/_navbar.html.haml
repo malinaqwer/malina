@@ -1,0 +1,22 @@
+%nav.navbar.navbar-inverse{role: "navigation"}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-9", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Навигация
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: "#"} KupiLegal
+    #bs-example-navbar-collapse-9.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{href: "#"} Работай с нами
+        %li
+          %a{href: "#"} Заказывай почтой
+        %li
+          %a{href: "#"} Каталог
+        %li
+          %a{href: "#"} Отзывы
+        - if current_user.try(:admin)
+          %li= link_to 'Диалоги', dialogs_path
+          %li= link_to 'Сообщения', messages_path

@@ -1,5 +1,6 @@
 class DialogsController < ApplicationController
   before_action :set_dialog, only: [:show, :edit, :update, :destroy]
+  before_action :admin_filter, except: [:enter, :create]
 
   # GET /dialogs
   # GET /dialogs.json
@@ -83,5 +84,9 @@ class DialogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def dialog_params
       params.require(:dialog).permit(:ip, :coordinates, :city)
+    end
+    
+    def admin_filter
+      redirect_to root_path unless current_user.try(:admin)
     end
 end

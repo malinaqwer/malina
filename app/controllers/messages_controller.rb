@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
+  before_action :admin_filter, except: [:create]
 
   # GET /messages
   # GET /messages.json
@@ -68,5 +69,9 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
       params.require(:message).permit(:author, :text, :k)
+    end
+    
+    def admin_filter
+      render text: 'fucking hacker' unless current_user.try(:admin)
     end
 end

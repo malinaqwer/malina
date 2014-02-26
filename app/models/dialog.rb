@@ -1,5 +1,6 @@
 class Dialog
   include Mongoid::Document
+  include Mongoid::Timestamps
   field :ip, type: String
   field :coordinates, type: Array
   field :city, type: String

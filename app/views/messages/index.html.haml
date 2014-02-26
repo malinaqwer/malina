@@ -5,7 +5,7 @@
     %th Автор
     %th Текст
     %th K
-    %th
+    %th Диалог
     %th
     %th
 
@@ -14,7 +14,7 @@
       %td= message.author
       %td= message.text
       %td= message.k
-      %td= link_to 'Show', message
+      %td= link_to 'Show', message.dialog
       %td= link_to 'Edit', edit_message_path(message)
       %td= link_to 'Destroy', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
 

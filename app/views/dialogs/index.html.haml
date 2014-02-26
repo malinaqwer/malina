@@ -6,8 +6,8 @@
     %th Ip
     %th Город
     %th Страна
-    %th Coordinates
-    %th City
+    %th Пришел
+    %th Сообщений
     %th
     %th
     %th
@@ -15,16 +15,14 @@
   - @dialogs.each do |dialog|
     %tr
       - geo = Geocoder.search dialog.ip
-      %td= dialog.url_start
+      %td
+        %small
+          %a{href: dialog.url_start}= dialog.url_start
       %td= geo[0].data['ip']
       %td= geo[0].data['city']
       %td= geo[0].data['country_name']
-      %td= dialog.coordinates
-      %td= dialog.city
+      %td= dialog.created_at
+      %td= dialog.messages.count
       %td= link_to 'Show', dialog
       %td= link_to 'Edit', edit_dialog_path(dialog)
       %td= link_to 'Destroy', dialog, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Dialog', new_dialog_path

@@ -5,7 +5,7 @@ class DialogsController < ApplicationController
   # GET /dialogs
   # GET /dialogs.json
   def index
-    @dialogs = Dialog.all
+    @dialogs = Dialog.desc(:created_at)
   end
 
   # GET /dialogs/1

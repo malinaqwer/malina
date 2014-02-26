@@ -3,7 +3,7 @@ is_typing_currently = false;
 Pusher.log = (message) ->
   window.console.log message  if window.console and window.console.log
 
-pusher = new Pusher("47d00e4672379dc8784b")
+pusher = new Pusher("a471015e307928cc3acb")
 console.log pusher
 
 

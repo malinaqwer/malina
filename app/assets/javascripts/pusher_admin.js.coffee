@@ -1,4 +1,4 @@
-pusher = new Pusher("47d00e4672379dc8784b")
+pusher = new Pusher("a471015e307928cc3acb")
 is_typing_currently = false;
 channel = pusher.subscribe('admin')
 

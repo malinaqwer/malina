@@ -18,12 +18,17 @@
       %td
         %small
           %a{href: (dialog.url_start + '?dialog=' + dialog.id)}= dialog.url_start
-      %td
-        %small= geo[0].data['ip']
-      %td
-        %small= geo[0].data['city']
-      %td
-        %small= geo[0].data['country_name']
+      - if geo[0].try(:data).present?
+        %td
+          %small= geo[0].data['ip']
+        %td
+          %small= geo[0].data['city']
+        %td
+          %small= geo[0].data['country_name']
+      - else
+        %td
+        %td
+        %td
       %td
         %small= dialog.created_at
       %td= dialog.messages.count

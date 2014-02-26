@@ -1,4 +1,6 @@
 Mongo::Application.routes.draw do
+  resources :products
+
   resources :messages
 
   resources :dialogs do

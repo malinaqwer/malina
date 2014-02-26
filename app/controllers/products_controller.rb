@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_filter :admin_user
+  before_filter :admin_filter
   # GET /products
   # GET /products.json
   def index

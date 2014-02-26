@@ -5,7 +5,7 @@ class DialogsController < ApplicationController
   # GET /dialogs
   # GET /dialogs.json
   def index
-    @dialogs = Dialog.desc(:created_at).limit(20)
+    @dialogs = Dialog.desc(:created_at).page(params[:page]).per(15)
   end
 
   # GET /dialogs/1
@@ -22,6 +22,12 @@ class DialogsController < ApplicationController
   # GET /dialogs/1/edit
   def edit
   end
+  
+  def done
+    Dialog.where(id: params[:id]).first.update_attributes(done: true)
+    Pusher[params[:id]].trigger('done', 'sorry')
+    render text: 'заблокирован'
+  end
 
 
   def enter
@@ -31,7 +37,9 @@ class DialogsController < ApplicationController
       @dialog = Dialog.create(ip: request.remote_ip, url_start: params[:url])
     end
     a = @dialog.url_start.split('/')
-    Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
+    unless @dialog.done
+      Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
+    end
     render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages }
   end
 

@@ -49,6 +49,8 @@ gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 # gem 'rmagick'
 gem "mini_magick"
+
+gem 'kaminari'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

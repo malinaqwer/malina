@@ -1,10 +1,6 @@
 is_typing_currently = false;
 
-Pusher.log = (message) ->
-  window.console.log message  if window.console and window.console.log
-
 pusher = new Pusher("a471015e307928cc3acb")
-console.log pusher
 
 
 $(document).ready ->
@@ -25,6 +21,9 @@ $(document).ready ->
     ht = $('<b>' + data.author + ': </b><i>' + data.text + '</i><br>')
     $('#messages_client').prepend ht
     audio_start()
+
+  done = (data) ->
+    localStorage.setItem('done', 'ok')
 
 
   $(window).load ->
@@ -47,6 +46,9 @@ $(document).ready ->
 
       channel.bind "message_send", (data) ->
         add_message data
+
+      channel.bind "done", (data) ->
+        done data
 
 
       $.each data.messages, (i, v) ->

@@ -5,6 +5,7 @@ Mongo::Application.routes.draw do
 
   resources :dialogs do
     get :enter, on: :collection
+    get :done, on: :collection
   end
 
   devise_for :users

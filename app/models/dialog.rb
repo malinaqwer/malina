@@ -5,6 +5,7 @@ class Dialog
   field :coordinates, type: Array
   field :city, type: String
   field :url_start
+  field :done, type: Boolean, default: false
   has_many :messages
   
   

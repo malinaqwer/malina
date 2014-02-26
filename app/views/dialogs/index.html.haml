@@ -17,11 +17,15 @@
       - geo = Geocoder.search dialog.ip
       %td
         %small
-          %a{href: dialog.url_start}= dialog.url_start
-      %td= geo[0].data['ip']
-      %td= geo[0].data['city']
-      %td= geo[0].data['country_name']
-      %td= dialog.created_at
+          %a{href: (dialog.url_start + '?dialog=' + dialog.id)}= dialog.url_start
+      %td
+        %small= geo[0].data['ip']
+      %td
+        %small= geo[0].data['city']
+      %td
+        %small= geo[0].data['country_name']
+      %td
+        %small= dialog.created_at
       %td= dialog.messages.count
       %td= link_to 'Show', dialog
       %td= link_to 'Edit', edit_dialog_path(dialog)

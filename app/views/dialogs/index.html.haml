@@ -15,7 +15,7 @@
       - geo = Geocoder.search dialog.ip
       %td
         %small
-          %a{href: (dialog.url_start + '?dialog=' + dialog.id)}= dialog.url_start
+          %a{href: (dialog.url_start.to_s + '?dialog=' + dialog.id.to_s)}= dialog.url_start
       - if geo[0].try(:data).present?
         %td
           %small= geo[0].data['ip']

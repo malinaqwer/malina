@@ -5,7 +5,7 @@ class DialogsController < ApplicationController
   # GET /dialogs
   # GET /dialogs.json
   def index
-    @dialogs = Dialog.desc(:created_at).page(params[:page]).per(15)
+    @dialogs = Dialog.desc(:updated_at).page(params[:page]).per(15)
   end
 
   # GET /dialogs/1

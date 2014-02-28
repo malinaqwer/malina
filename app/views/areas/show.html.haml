@@ -12,25 +12,13 @@
 %hr
 
 
+
 .row
-  .col-sm-6
+  .col-lg-8.col-md-9.col-sm-12
+    = render 'templates/slider'
+    %hr
     = render 'templates/catalog'
-  .col-sm-6
+  .col-lg-4.col-md-3.col-sm-12
     = render 'templates/chat'
-
-%hr
-
-.row
-  .col-sm-4
-    %h3 Готовые закладки в городе #{@area.title}
-    %ul
-      %li Мягкий 3гр
-      %li Мягкий 3гр
-      %li Мягкий 5гр
-      %li Мягкий 10гр
-      %li Соль 10гр
-      %li Скорость 10гр
-      %li MDMA 10гр
-  .col-sm-4
-    %h3 Отзывы
-  .col-sm-4
+    %hr
+    = render 'templates/reviews'

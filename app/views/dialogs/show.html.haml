@@ -3,7 +3,6 @@
 = link_to 'Back', dialogs_path
 
 %p#notice= notice
-
 %p
   - geo = Geocoder.search @dialog.ip
   %b= geo[0].data['ip']

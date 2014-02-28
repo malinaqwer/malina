@@ -1,9 +1,6 @@
 %table.table.table-bordered.table-condensed
   %tr
     %th Вход
-    %th Ip
-    %th Город
-    %th Страна
     %th Пришел
     %th Сообщений
     %th
@@ -12,21 +9,9 @@
 
   - @dialogs.each do |dialog|
     %tr{class: ('danger' if dialog.done)}
-      - geo = Geocoder.search dialog.ip
       %td
         %small
           %a{href: (dialog.url_start.to_s + '?dialog=' + dialog.id.to_s)}= dialog.url_start
-      - if geo[0].try(:data).present?
-        %td
-          %small= geo[0].data['ip']
-        %td
-          %small= geo[0].data['city']
-        %td
-          %small= geo[0].data['country_name']
-      - else
-        %td
-        %td
-        %td
       %td
         %small= dialog.created_at
       %td= dialog.messages.count

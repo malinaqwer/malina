@@ -3,28 +3,29 @@
   = audio_tag("yo.mp3", id: 'audio_chat')
 
 - if current_user.present?
-  .jumbotron
-    - dialog = Dialog.where(id: params[:dialog]).first
-    - if dialog.present?
-      %b#dialog_id= params[:dialog]
-      #control_chat
-        %textarea#message.form-control{ rows:"3" }
-        %a#send_message.btn.btn-default Отправить
-    #messages_admin
-    - if dialog.present?
-      %a#done.btn.btn-danger.btn-xs{href: '#', dialog: dialog.id} заблокировать
-      - dialog.messages.desc(:created_at).each do |message|
-        %b=message.author
-        %i=message.text
-        %br 
-  - content_for :js do
-    = javascript_include_tag 'pusher_admin'
-- else
-  .jumbotron
+  - dialog = Dialog.where(id: params[:dialog]).first
+  - if dialog.present?
+    %b#dialog_id= params[:dialog]
     #control_chat
       %textarea#message.form-control{ rows:"3" }
       %a#send_message.btn.btn-default Отправить
-    #messages_client
+  #messages_admin.messages
+  - if dialog.present?
+    %a#done.btn.btn-danger.btn-xs{href: '#', dialog: dialog.id} заблокировать
+    - dialog.messages.desc(:created_at).each do |message|
+      %b=message.author
+      %i=message.text
+      %br 
+  - content_for :js do
+    = javascript_include_tag 'pusher_admin'
+- else
+  %h3
+    Оператор
+    %span{style: 'color:green;text-decoration:underline;font-size:.75em;'} online
+  #control_chat
+    %textarea#message.form-control{ rows:"3" }
+    %a#send_message.btn.btn-default Отправить
+  #messages_client.messages
   - content_for :js do
     = javascript_include_tag 'pusher_client'
 

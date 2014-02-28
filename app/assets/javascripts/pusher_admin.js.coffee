@@ -21,7 +21,7 @@ $(document).ready ->
 
   audio_start = () ->
     $('#audio_chat')[0].play()
-    $('.jumbotron').hover ->
+    $('.messages').hover ->
       $('#audio_chat')[0].currentTime = 0
       $('#audio_chat')[0].pause()
 

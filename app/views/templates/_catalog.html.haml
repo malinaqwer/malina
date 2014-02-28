@@ -10,11 +10,9 @@
         %th Товар
         %th Вес
         %th Цена
-        %th Наличие
     %tbody
       - Product.each do |p|
         %tr
           %td= link_to p.title, p
           %td= p.weight
           %td= p.price
-          %td= p.avail

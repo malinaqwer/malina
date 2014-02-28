@@ -2,7 +2,8 @@
 
 %p
   %b Image:
-  = @product.image
+  = image_tag @product.image
+  -# %img{src: ('assets/' + @product.image_title.to_s)}
 %p
   %b Title:
   = @product.title

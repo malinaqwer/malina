@@ -14,7 +14,8 @@
 
   - @products.each do |product|
     %tr
-      %td= product.image
+      %td
+        %img{src: ('assets/' + product.image_title.to_s)}
       %td= product.title
       %td= product.desc
       %td= product.price

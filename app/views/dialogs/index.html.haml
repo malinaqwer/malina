@@ -11,7 +11,7 @@
     %th
 
   - @dialogs.each do |dialog|
-    %tr
+    %tr{class: ('danger' if dialog.done)}
       - geo = Geocoder.search dialog.ip
       %td
         %small

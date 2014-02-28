@@ -5,16 +5,16 @@
     %li{"data-slide-to" => "2", "data-target" => "#carousel-example-generic"}
   .carousel-inner
     .item.active
-      = image_tag 'sol_kupit.jpg'
+      = image_tag 'sol_kupit.jpg', alt: ((@page.title if @page.present?).to_s + ' ' + (@area.title if @area.present?).to_s)
       .carousel-caption
         %h3 Купить соль
 
     .item
-      = image_tag 'spice_kupit.jpg'
+      = image_tag 'spice_kupit.jpg', alt: ((@page.title if @page.present?).to_s + ' ' + (@area.title if @area.present?).to_s)
       .carousel-caption
         %h3 Купить спайс
     .item
-      = image_tag 'reagent_kupit.jpg'
+      = image_tag 'reagent_kupit.jpg', alt: ((@page.title if @page.present?).to_s + ' ' + (@area.title if @area.present?).to_s)
       .carousel-caption
         %h3 Купить реагент
 

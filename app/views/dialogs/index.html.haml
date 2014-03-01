@@ -1,23 +1,5 @@
-%table.table.table-bordered.table-condensed
-  %tr
-    %th Вход
-    %th Пришел
-    %th Сообщений
-    %th
-    %th
-    %th
-
-  - @dialogs.each do |dialog|
-    %tr{class: ('danger' if dialog.done)}
-      %td
-        %small
-          %a{href: (dialog.url_start.to_s + '?dialog=' + dialog.id.to_s)}= dialog.url_start
-      %td
-        %small= dialog.created_at
-      %td= dialog.messages.count
-      %td= link_to 'Show', dialog
-      %td= link_to 'Edit', edit_dialog_path(dialog)
-      %td= link_to 'Destroy', dialog, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-
-= paginate @dialogs
+.row
+  .col-lg-2.col-md-3.col-sm-4.col-xs-6
+    = render 'dialogs/dialog/dialogs'
+  .col-lg-10.col-md-9.col-sm-8.col-xs-6
+    = render 'dialogs/dialog/dialog' if @dialog.present?

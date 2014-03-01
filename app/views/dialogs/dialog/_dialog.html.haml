@@ -1,0 +1,36 @@
+%p#notice= notice
+.pull-right
+  = link_to 'Ред.', edit_dialog_path(@dialog), class: 'btn btn-default btn-xs'
+  %a#done.btn.btn-danger.btn-xs{href: '#', dialog: @dialog.id} заблокировать
+%b#dialog_id= params[:dialog]
+- if @geo.present?
+  %h3
+    = @geo[0].data['ip']
+    = @geo[0].data['city']
+    = @geo[0].data['country_name']
+%h4
+  = @dialog.url_start
+  = @area.title if @area.present?
+
+#control_chat
+  %textarea#message.form-control{ rows:"3" }
+  %a#send_message.btn.btn-default Отправить
+#messages_admin.messages
+
+
+%table.table.table-bordered.table-condensed
+  - @messages.each do |message|
+    %tr
+      %td= message.author
+      %td= message.text
+      %td= message.k
+      %td= link_to 'Show', message
+      %td= link_to 'Edit', edit_message_path(message)
+      %td= link_to 'Destroy', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+
+
+- content_for :js do
+  = javascript_include_tag "http://js.pusherapp.com/2.1/pusher.js"
+  = javascript_include_tag 'pusher_admin'
+  = audio_tag("yo.mp3", id: 'audio_chat')

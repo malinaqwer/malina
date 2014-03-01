@@ -20,7 +20,8 @@ $(document).ready ->
   add_message = (data) ->
     ht = $('<b>' + data.author + ': </b><i>' + data.text + '</i><br>')
     $('#messages_client').prepend ht
-    audio_start()
+    alert data.text
+    # audio_start()
 
   done = (data) ->
     localStorage.setItem('done', 'ok')

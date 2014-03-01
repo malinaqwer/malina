@@ -5,6 +5,12 @@ class DialogsController < ApplicationController
   # GET /dialogs
   # GET /dialogs.json
   def index
+    if params[:dialog].present?
+      @dialog = Dialog.find(params[:dialog])
+      @area = Area.find @dialog.url_start.split('/')[1]
+      @messages = @dialog.messages
+      @geo = Geocoder.search @dialog.ip
+    end
     @dialogs = Dialog.desc(:updated_at).page(params[:page]).per(15)
   end
 

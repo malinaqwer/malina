@@ -5,25 +5,26 @@
     Купить легал
   = @area.title
 
-%hr
-%strong Господа, Уважаемые
-%br
-перед Вами сервис, который позволит быстро купить то, что вы ищите 
-%h1
-  ICQ: 684236644
-  Skype: stuffstore100
 
-%hr
+- if current_user.try(:admin)
+  = render 'templates/chat'
 
-
-
-.row
-  .col-lg-8.col-md-9.col-sm-12
-    = render 'templates/chat'
-    %hr
-    = render 'templates/slider'
-    %hr
-    = render 'templates/catalog'
-    %hr
-    = render 'templates/reviews'
+- else
+  %hr
+  %strong Господа, Уважаемые
+  %br
+  перед Вами сервис, который позволит быстро купить то, что вы ищите 
+  %h1
+    ICQ: 684236644
+    Skype: stuffstore100
+  %hr
+  .row
+    .col-lg-8.col-md-9.col-sm-12
+      = render 'templates/chat'
+      %hr
+      = render 'templates/slider'
+      %hr
+      = render 'templates/catalog'
+      %hr
+      = render 'templates/reviews'
 

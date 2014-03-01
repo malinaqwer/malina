@@ -1,0 +1,19 @@
+%table.table.table-bordered.table-condensed
+  - @dialogs.each do |dialog|
+    %tr{class: ('danger' if dialog.done)}
+
+      %td= dialog.messages.count
+
+      %td
+        %small
+          = link_to dialog.url_start.split('/')[1], params.merge(dialog: dialog.id)
+          -#%a{href: (dialog.url_start.to_s + '?dialog=' + dialog.id.to_s)}= dialog.url_start.split('/')[1]
+        = link_to '+', dialog
+        = link_to '/', edit_dialog_path(dialog)
+        = link_to '-', dialog, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+      %td
+        %small= dialog.updated_at.strftime('%B %e at %l:%M %p')
+
+
+= paginate @dialogs

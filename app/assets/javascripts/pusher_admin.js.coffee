@@ -12,18 +12,19 @@ $(document).ready ->
 
   enter = (data) ->
     $('#messages_admin').prepend 'вход на стр: ' + data.path + ' - <a class="btn btn-xs btn-default" href="?dialog=' + data.on + '">' + data.on + '</a>'
-    audio_start()
+    audio_start data.path
 
   message_send = (data) ->
     console.log data
     $('#messages_admin').prepend '<a class="btn btn-xs btn-default" href="?dialog=' + data.id + '">' + data.text + '</a><br>'
-    audio_start()
+    audio_start data.text
 
-  audio_start = () ->
+  audio_start = (data) ->
     $('#audio_chat')[0].play()
     $('.messages').hover ->
       $('#audio_chat')[0].currentTime = 0
       $('#audio_chat')[0].pause()
+    alert data
 
   doneCap = ->
     id = $(@).attr 'dialog'

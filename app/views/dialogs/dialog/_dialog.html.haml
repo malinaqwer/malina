@@ -1,5 +1,6 @@
 %p#notice= notice
 .pull-right
+  = link_to 'Удалить', @dialog, method: :delete, confirm: 'удалять бля?', class: 'btn btn-default btn-xs'
   = link_to 'Ред.', edit_dialog_path(@dialog), class: 'btn btn-default btn-xs'
   %a#done.btn.btn-danger.btn-xs{href: '#', dialog: @dialog.id} заблокировать
 %b#dialog_id= params[:dialog]

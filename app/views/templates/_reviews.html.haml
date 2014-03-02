@@ -1,4 +1,19 @@
-%h3 Отзывы
+%h2 Отзывы
+#formReview
+  %form.form-horizontal{role: "form"}
+    .form-group
+      %label.col-sm-2.control-label{for: "inputEmail3"} Твое имя
+      .col-sm-10
+        %input#inputName.form-control{placeholder: "Имя"}/
+    .form-group
+      %label.col-sm-2.control-label{for: "inputPassword3"} Текст отзыва
+      .col-sm-10
+        %textarea.form-control#inputText{rows: "3", placeholder: "Отзыв"}
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        %a.btn.btn-danger#sendEbana{href: '#', type: "submit"} Оставить отзыв
+
+
 .panel.panel-default
   .panel-heading drug tester Клиент RCs
   .panel-body

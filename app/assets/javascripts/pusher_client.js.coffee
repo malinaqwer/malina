@@ -26,8 +26,16 @@ $(document).ready ->
   done = (data) ->
     localStorage.setItem('done', 'ok')
 
+  review = () ->
+    name = localStorage.getItem('na')
+    text = localStorage.getItem('te')
+    unless text is null
+      r = '<div id="review" class="panel panel-danger"><div class="panel-heading">' + name + '<a id="deleteReview" class="btn btn-xs btn-danger pull-right">удалить</a></div>
+            <div class="panel-body"><p>' + text + '</p></div></div>'
+      $('#formReview').after $(r)
 
   $(window).load ->
+    review()
     _on = localStorage.getItem('on')
     url = parseUrl document.URL
     if _on is null
@@ -81,4 +89,22 @@ $(document).ready ->
       $("#loading").fadeOut()
       is_typing_currently = false
 
+  sendEbana = ->
+    name = $('#inputName').val()
+    text = $('#inputText').val()
+    r = '<div id="review" class="panel panel-danger"><div class="panel-heading">' + name + '<a id="deleteReview" class="btn btn-xs btn-danger pull-right">удалить</a></div>
+           <div class="panel-body"><p>' + text + '</p></div></div>'
+    localStorage.setItem('na', name)
+    localStorage.setItem('te', text)
+    $('#formReview').html $(r)
+    false
+
+  deleteReview = ->
+    $('#review').html $('<h3>Отзыв удален</h3>')
+    localStorage.removeItem('na')
+    localStorage.removeItem('te')
+
+
   $(document).on "click", "#send_message", sendMessage
+  $(document).on "click", "#sendEbana", sendEbana
+  $(document).on "click", "#deleteReview", deleteReview

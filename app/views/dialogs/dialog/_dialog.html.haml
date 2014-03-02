@@ -24,7 +24,7 @@
     %tr
       %td= message.author
       %td= message.text
-      %td= message.k
+      %td= message.created_at.strftime('%B %e at %l:%M %p')
       %td= link_to 'Show', message
       %td= link_to 'Edit', edit_message_path(message)
       %td= link_to 'Destroy', message, :method => :delete, :data => { :confirm => 'Are you sure?' }

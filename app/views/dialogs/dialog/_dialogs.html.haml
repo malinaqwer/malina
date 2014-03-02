@@ -7,7 +7,7 @@
       %p.list-group-item-text
         - if messages.count > 0
           %span.btn.btn-xs{class: 'btn-danger'}= messages.count
-        = dialog.updated_at.strftime('%B %e at %l:%M %p')
+        = dialog.updated_at.strftime('%B %e at %l:%M %p') if dialog.updated_at.present?
 
 
 = paginate @dialogs

@@ -18,8 +18,8 @@ $(document).ready ->
       
 
   add_message = (data) ->
-    ht = $('<b>' + data.author + ': </b><i>' + data.text + '</i><br>')
-    $('#messages_client').prepend ht
+    data.new = '1'
+    createMessage data
     alert data.text
     # audio_start()
 
@@ -61,9 +61,14 @@ $(document).ready ->
 
 
       $.each data.messages, (i, v) ->
-        ht = $('<b>' + v.author + ': </b><i>' + v.text + '</i><br>')
-        $('#messages_client').append ht
+        createMessage v
 
+
+  createMessage = (data) ->
+    m = '<div class="list-group-item">
+        <b class="list-group-item-heading">' + data.text + '</b><br>
+        <i class="list-group-item-text">' + data.author + '</i></div>'
+    $('.list-group').prepend $(m)
 
 
   sendMessage = ->
@@ -76,8 +81,8 @@ $(document).ready ->
     $("#loading").fadeIn()
     $("#message-overlay").fadeIn 200
     $("#message").blur()
-    ht = $('<b>parya: </b><i>' + message + '</i><br>')
-    $('#messages_client').prepend ht
+    createMessage {author: 'клиент', text: message}
+
     $.post "/messages",
       d: $(@).attr('c'),
       m: message,

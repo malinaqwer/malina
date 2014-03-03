@@ -5,6 +5,8 @@ class Message
   field :text, type: String
   field :k, type: Integer
   
+  # default_scope desc(:created_at)
+  
   belongs_to :dialog
   
   before_create :pusher

@@ -19,13 +19,13 @@
   - content_for :js do
     = javascript_include_tag 'pusher_admin'
 - else
-  %h3
-    Оператор
-    %span{style: 'color:green;text-decoration:underline;font-size:.75em;'} online
+  %br
+  #invite Пишите все вопросы в этот чат
   #control_chat
-    %textarea#message.form-control{ rows:"3" }
-    %a#send_message.btn.btn-default Отправить
+    %textarea#message.form-control{ rows:"3", placeholder: 'пишем все сюда'}
+    %a#send_message.btn.btn-block.btn-lg.btn-danger Отправить
   #messages_client.messages
+  .list-group
   - content_for :js do
     = javascript_include_tag 'pusher_client'
 

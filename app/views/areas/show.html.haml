@@ -1,30 +1,23 @@
-%h1
-  - if @page.present?
-    = @page.title
-  - else
-    Купить легал
-  = @area.title
-
-
 - if current_user.try(:admin)
   = render 'templates/chat'
 
 - else
-  %hr
-  %strong Господа, Уважаемые
-  %br
-  перед Вами сервис, который позволит быстро купить то, что вы ищите 
-  %h1
-    ICQ: 684236644
-    Skype: stuffstore100
-  %hr
   .row
     .col-lg-8.col-md-9.col-sm-12
-      = render 'templates/chat'
+      %h1
+        - if @page.present?
+          = @page.title
+        - else
+          Купить легал
+        = @area.title
+      %strong Господа, Уважаемые
+      %br
+      перед Вами сервис, который позволит быстро купить то, что вы ищите 
       %hr
       = render 'templates/slider'
       %hr
       = render 'templates/catalog'
       %hr
       = render 'templates/reviews'
-
+    .col-lg-4.col-md-4.col-sm-6.col-xs-12#chatEbanaRot
+      = render 'templates/chat'

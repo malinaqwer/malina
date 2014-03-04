@@ -20,3 +20,4 @@
         - if current_user.try(:admin)
           %li= link_to ('Диалоги ' + Dialog.count.to_s ), dialogs_path
           %li= link_to ('Сообщения ' + Message.count.to_s), messages_path
+          %li= link_to ('Отзывы ' + Review.count.to_s), reviews_path

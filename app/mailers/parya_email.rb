@@ -4,7 +4,7 @@ class ParyaEmail < ActionMailer::Base
   def enter(id)
     @dialog = Dialog.find id
     @id = id
-    mail(to: '79653827089a@gmail.com', subject: @id)
+    mail(to: '1000xxxtest@gmail.com', subject: @id)
   end
 
 end

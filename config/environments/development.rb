@@ -32,8 +32,8 @@ Mongo::Application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'localhost',
-    user_name:            '79653827089a@gmail.com',
-    password:             '796538270891',
+    user_name:            '1000xxxtest@gmail.com',
+    password:             '@gDBHNe@00',
     authentication:       'plain',
     enable_starttls_auto: true  }
 

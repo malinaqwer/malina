@@ -25,6 +25,7 @@ Mongo::Application.routes.draw do
   get 'sitemap' => 'areas#sitemap'
   get ':id' => 'areas#show'
   get ':id/:page' => 'areas#show'
+  post 'e/inc/xxxqwer' => 'incoming#event'
 
   # Example of regular route:
 

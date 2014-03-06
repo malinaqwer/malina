@@ -45,7 +45,7 @@ class DialogsController < ApplicationController
       end
       a = @dialog.url_start.split('/')
       unless @dialog.done
-        ParyaEmail.enter @dialog.id
+        ParyaEmail.enter(@dialog.id).deliver
         Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
       end
       render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at) }

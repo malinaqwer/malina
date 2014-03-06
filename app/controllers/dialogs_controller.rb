@@ -28,7 +28,7 @@ class DialogsController < ApplicationController
   # GET /dialogs/1/edit
   def edit
   end
-  
+
   def done
     Dialog.where(id: params[:id]).first.update_attributes(done: true)
     Pusher[params[:id]].trigger('done', 'sorry')
@@ -37,16 +37,18 @@ class DialogsController < ApplicationController
 
 
   def enter
-    if params[:on].present?
-      @dialog = Dialog.where(id: params[:on]).first || Dialog.create(ip: request.remote_ip, url_start: params[:url])
-    else
-      @dialog = Dialog.create(ip: request.remote_ip, url_start: params[:url])
+    unless request.remote_ip.include?('66.249.66')
+      if params[:on].present?
+        @dialog = Dialog.where(id: params[:on]).first || Dialog.create(ip: request.remote_ip, url_start: params[:url])
+      else
+        @dialog = Dialog.create(ip: request.remote_ip, url_start: params[:url])
+      end
+      a = @dialog.url_start.split('/')
+      unless @dialog.done
+        Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
+      end
+      render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at) }
     end
-    a = @dialog.url_start.split('/')
-    unless @dialog.done
-      Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
-    end
-    render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at) }
   end
 
 
@@ -100,7 +102,7 @@ class DialogsController < ApplicationController
     def dialog_params
       params.require(:dialog).permit(:ip, :coordinates, :city)
     end
-    
+
     def admin_filter
       redirect_to root_path unless current_user.try(:admin)
     end

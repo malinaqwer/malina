@@ -49,6 +49,8 @@ class DialogsController < ApplicationController
         Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
       end
       render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at) }
+    else
+      render :nothing
     end
   end
 

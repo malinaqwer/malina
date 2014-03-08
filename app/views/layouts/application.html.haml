@@ -22,7 +22,8 @@
     -#  - @pages.each do |p|
     -#    %a{href: ('http://kupilegal.ru/' + @area.slug + '/' + p.slug)}= p.title + ' ' + @area.title
     - unless Rails.env.development?
-      = render 'templates/ya'
-      = render 'templates/ga'
+      - unless current_user.try(:admin)
+        = render 'templates/ya'
+        = render 'templates/ga'
 
 -#42b027d2001e4bb24cf5@cloudmailin.net

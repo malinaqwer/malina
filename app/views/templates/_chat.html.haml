@@ -3,32 +3,8 @@
   = audio_tag("yo.mp3", id: 'audio_chat')
 
 - if current_user.try(:admin)
-  - dialog = Dialog.where(id: params[:dialog]).first
-  - if dialog.present?
-    %b#dialog_id= params[:dialog]
-    #control_chat
-      %textarea#message.form-control{ rows:"3" }
-      %a#send_message.btn.btn-default Отправить
-  #messages_admin.messages
-  - if dialog.present?
-    %a#done.btn.btn-danger.btn-xs{href: '#', dialog: dialog.id} заблокировать
-    - dialog.messages.desc(:created_at).each do |message|
-      %b=message.author
-      %i=message.text
-      %br
-  - content_for :js do
-    = javascript_include_tag 'pusher_admin'
+  = render 'templates/chat_admin'
 - else
-  %br
-  #invite Пишите все вопросы в этот чат
-  #control_chat
-    %textarea#message.form-control{ rows:"3", placeholder: 'пишем все сюда'}
-    %a#send_message.btn.btn-block.btn-lg.btn-danger Отправить
-  #messages_client.messages
-  .list-group
-  - content_for :js do
-    = javascript_include_tag 'pusher_client'
-
-
+  = render 'templates/chat_client'
 
 -# Поздравляю друг, ты поддержал проект - "Жизнь без спайса и соли" - прочитай книгу "Мирный воин" или посмотри фильм "Процветание" - часть средств идет на благотворительность. Можешь оценить работу бота

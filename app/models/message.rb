@@ -16,7 +16,7 @@ class Message
     dialog_id = self.dialog_id.to_s
     dialog = self.dialog
     if self.author == "admin"
-      Pusher[dialog_id].trigger('message_send', { text: self.text, author: 'admin'})
+      Pusher[dialog_id].trigger('message_send', { id: self.id.to_s, message: {text: self.text, author: 'admin'}})
     else
       Pusher['admin'].trigger('message_send', { id: dialog_id, text: self.text, author: 'parya' }) unless dialog.done
     end

@@ -19,8 +19,8 @@ $(document).ready ->
 
   add_message = (data) ->
     data.new = '1'
-    createMessage data
-    alert data.text
+    createMessage {id: data.id, message: {author: data.message.author, text: data.message.text}}
+    alert data.message.text
     # audio_start()
 
   done = (data) ->

@@ -7,7 +7,7 @@ class DialogsController < ApplicationController
   def index
     if params[:dialog].present?
       @dialog = Dialog.find(params[:dialog])
-      @area = Area.where(id: @dialog.url_start.split('/')[1]).first
+      @area = Area.where(id: @dialog.url_start.split('/')[1]).first if @dialog.url_start.present?
       @messages = @dialog.messages.desc(:created_at)
       @geo = Geocoder.search @dialog.ip
     end

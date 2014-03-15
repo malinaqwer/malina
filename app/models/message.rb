@@ -23,7 +23,7 @@ class Message
   end
 
   def update_message
-    dialog = self.dialog_id
+    dialog = self.dialog_id.to_s
     Pusher[dialog].trigger('update_message', { id: self.id.to_s, text: self.text })
   end
 

@@ -85,18 +85,18 @@ $(document).ready ->
     $("#loading").fadeIn()
     $("#message-overlay").fadeIn 200
     $("#message").blur()
-    createMessage {author: 'клиент', text: message}
 
     $.post "/messages",
       d: $(@).attr('c'),
       m: message,
       a: 'parya'
-    , (response) ->
+    , (data) ->
       $("#message").val ""
       $("#message-overlay").fadeOut 150
       $("#message").focus()
       $("#loading").fadeOut()
       is_typing_currently = false
+      createMessage {id: data, message: {author: 'клиент', text: message}}
 
   sendEbana = ->
     name = $('#inputName').val()

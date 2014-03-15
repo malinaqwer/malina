@@ -2,7 +2,7 @@
   = javascript_include_tag "http://js.pusherapp.com/2.1/pusher.js"
   = audio_tag("yo.mp3", id: 'audio_chat')
 
-- if current_user.present?
+- if current_user.try(:admin)
   - dialog = Dialog.where(id: params[:dialog]).first
   - if dialog.present?
     %b#dialog_id= params[:dialog]
@@ -15,7 +15,7 @@
     - dialog.messages.desc(:created_at).each do |message|
       %b=message.author
       %i=message.text
-      %br 
+      %br
   - content_for :js do
     = javascript_include_tag 'pusher_admin'
 - else

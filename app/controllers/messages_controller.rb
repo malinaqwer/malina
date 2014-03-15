@@ -26,14 +26,7 @@ class MessagesController < ApplicationController
   # POST /messages.json
   def create
     @message = Message.new(dialog_id: params[:d], text: params[:m], author: params[:a])
-
-    respond_to do |format|
-      if @message.save
-        format.json { render action: 'show', status: :created, location: @message }
-      else
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
+    render text: @message.id.to_s if @message.save
   end
 
   # PATCH/PUT /messages/1

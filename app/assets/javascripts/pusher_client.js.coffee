@@ -15,7 +15,7 @@ $(document).ready ->
     $('.messages').hover ->
       $('#audio_chat')[0].currentTime = 0
       $('#audio_chat')[0].pause()
-      
+
 
   add_message = (data) ->
     data.new = '1'
@@ -59,15 +59,19 @@ $(document).ready ->
       channel.bind "done", (data) ->
         done data
 
+      channel.bind "update_message", (data) ->
+        update_message data
+
+
 
       $.each data.messages, (i, v) ->
         createMessage v
 
 
   createMessage = (data) ->
-    m = '<div class="list-group-item">
-        <b class="list-group-item-heading">' + data.text + '</b><br>
-        <i class="list-group-item-text">' + data.author + '</i></div>'
+    m = '<div class="list-group-item" id="' + data.id + '">
+        <b class="list-group-item-heading">' + data.message.text + '</b><br>
+        <i class="list-group-item-text">' + data.message.author + '</i></div>'
     $('.list-group').prepend $(m)
 
 
@@ -108,6 +112,9 @@ $(document).ready ->
     $('#review').html $('<h3>Отзыв удален</h3>')
     localStorage.removeItem('na')
     localStorage.removeItem('te')
+
+  update_message = (data) ->
+    $('#' + data.id + ' b').text data.text
 
 
   $(document).on "click", "#send_message", sendMessage

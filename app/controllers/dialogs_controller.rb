@@ -48,7 +48,7 @@ class DialogsController < ApplicationController
         # ParyaEmail.enter(@dialog.id).deliver
         Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
       end
-      render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at) }
+      render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at).map{|m| {id: m.id.to_s, message: m}} }
     else
       render :nothing
     end

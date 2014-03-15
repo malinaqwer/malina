@@ -10,6 +10,7 @@ class Message
   belongs_to :dialog
 
   before_create :pusher
+  after_update :update_message
 
   def pusher
     dialog_id = self.dialog_id.to_s
@@ -20,5 +21,12 @@ class Message
       Pusher['admin'].trigger('message_send', { id: dialog_id, text: self.text, author: 'parya' }) unless dialog.done
     end
   end
+
+  def update_message
+    dialog = self.dialog_id
+    Pusher[dialog].trigger('update_message', { id: self.id.to_s, text: self.text })
+  end
+
+
 
 end

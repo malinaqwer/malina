@@ -40,8 +40,9 @@ class MessagesController < ApplicationController
   # PATCH/PUT /messages/1.json
   def update
     respond_to do |format|
+      url = '/dialogs?dialog=' + @message.dialog_id
       if @message.update(message_params)
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to url, notice: 'Message was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,7 +71,7 @@ class MessagesController < ApplicationController
     def message_params
       params.require(:message).permit(:author, :text, :k)
     end
-    
+
     def admin_filter
       render text: 'fucking hacker' unless current_user.try(:admin)
     end

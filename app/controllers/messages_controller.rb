@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.desc(:created_at)
+    @messages = Message.ne(author: 'admin').desc(:created_at).page(params[:page]).per(35)
   end
 
   # GET /messages/1
@@ -25,8 +25,13 @@ class MessagesController < ApplicationController
   # POST /messages
   # POST /messages.json
   def create
-    @message = Message.new(dialog_id: params[:d], text: params[:m], author: params[:a])
-    render text: @message.id.to_s if @message.save
+    if params[:d].present?
+      @message = Message.new(dialog_id: params[:d], text: params[:m], author: params[:a])
+      render text: @message.id.to_s if @message.save
+    else
+      @message = Message.new(message_params)
+      redirect_to messages_path if @message.save
+    end
   end
 
   # PATCH/PUT /messages/1

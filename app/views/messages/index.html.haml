@@ -1,23 +1,18 @@
-%h1 Listing messages
+= link_to 'New Message', new_message_path
 
 %table.table.table-bordered.table-condensed
   %tr
-    %th Автор
     %th Текст
     %th K
-    %th Диалог
-    %th
-    %th
 
   - @messages.each do |message|
     %tr
-      %td= message.author
-      %td= message.text
-      %td= message.k
-      %td= link_to 'Show', message.dialog
-      %td= link_to 'Edit', edit_message_path(message)
-      %td= link_to 'Destroy', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td
+        %a{href: ('/dialogs?dialog=' + message.try(:dialog_id).to_s) }= message.text
+      %td
+        = message.k
+        = link_to 'Show', message.dialog
+        = link_to 'Edit', edit_message_path(message)
+        = link_to 'Destroy', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'New Message', new_message_path
+= paginate @messages

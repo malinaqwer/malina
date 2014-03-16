@@ -33,6 +33,10 @@ $(document).ready ->
     , (data) ->
       alert data
 
+  copyText = ->
+    what = $(@).attr 'message'
+    $('textarea#message').val what
+
 
 
   if $('#dialog_id').text() is ''
@@ -64,3 +68,4 @@ $(document).ready ->
 
   $(document).on "click", "#send_message", sendMessage
   $(document).on "click", "#done", doneCap
+  $(document).on "click", ".list-group-item", copyText

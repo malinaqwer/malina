@@ -1,33 +1,34 @@
-%p#notice= notice
-.pull-right
-  = link_to 'Удалить', @dialog, method: :delete, confirm: 'удалять бля?', class: 'btn btn-default btn-xs'
-  = link_to 'Ред.', edit_dialog_path(@dialog), class: 'btn btn-default btn-xs'
-  %a#done.btn.btn-danger.btn-xs{href: '#', dialog: @dialog.id} заблокировать
-%b#dialog_id= params[:dialog]
-- if @geo.present?
-  %h3
-    = @geo[0].data['ip']
-    = @geo[0].data['city']
-    = @geo[0].data['country_name']
-%h4
-  = @dialog.url_start
-  = @area.title if @area.present?
+.panel.panel-default
+  .panel-heading
+    .pull-right
+      = link_to '-', @dialog, method: :delete, confirm: 'удалять бля?', class: 'btn btn-default btn-xs'
+      = link_to '/', edit_dialog_path(@dialog), class: 'btn btn-default btn-xs'
+      %a#done.btn.btn-danger.btn-xs{href: '#', dialog: @dialog.id} заблокировать
+    - if @geo.present?
+      %h5
+        = @geo[0].data['ip']
+        = @geo[0].data['city']
+        = @geo[0].data['country_name']
+        = @dialog.url_start
+        = @area.title if @area.present?
+    %small#dialog_id= params[:dialog]
 
-#control_chat
-  %textarea#message.form-control{ rows:"3" }
-  %a#send_message.btn.btn-default Отправить
-#messages_admin.messages
+  .panel-body
+    #control_chat
+      %textarea#message.form-control{ rows:"3" }
+      %a#send_message.btn.btn-danger.btn-block Отправить
+    #messages_admin.messages
 
 
-%table.table.table-bordered.table-condensed
+.list-group
   - @messages.each do |message|
-    %tr
-      %td= message.author
-      %td= message.text
-      %td= message.created_at.strftime('%B %e at %l:%M %p')
-      %td= link_to 'Show', message
-      %td= link_to 'Edit', edit_message_path(message)
-      %td= link_to 'Destroy', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %a.list-group-item{href: '#', class: ((message.author == 'parya') ? 'list-group-item-warning text-right' : 'list-group-item-success' )}
+      %h5.list-group-item-heading= message.text
+      %small.list-group-item-text
+        = message.created_at.strftime('%B %e at %l:%M %p')
+        -#= link_to '+', message
+        -#= link_to '/', edit_message_path(message)
+        -#= link_to '-', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 
 

@@ -22,7 +22,7 @@
 
 .list-group
   - @messages.each do |message|
-    %a.list-group-item{href: '#', class: ((message.author == 'parya') ? 'list-group-item-warning text-right' : 'list-group-item-success' )}
+    %a.list-group-item{href: '#', class: ((message.author == 'admin') ? 'list-group-item-warning text-right' : 'list-group-item-success' )}
       %h5.list-group-item-heading= message.text
       %small.list-group-item-text
         = message.created_at.strftime('%B %e at %l:%M %p')

@@ -13,12 +13,12 @@ $(document).ready ->
   enter = (data) ->
     a = '<a class="list-group-item list-group-item-danger" href="?dialog=' + data.on + '">
           <h5 class="list-group-item-heading">' + data.path + '</h5></a>'
-    $('.list-group').prepend $(a)
+    $('#messages_admin').prepend $(a)
 
   message_send = (data) ->
     a = '<a class="list-group-item list-group-item-danger" href="?dialog=' + data.id + '">
           <h5 class="list-group-item-heading">' + data.text + '</h5></a>'
-    $('.list-group').prepend $(a)
+    $('#messages_admin').prepend $(a)
 
   audio_start = (data) ->
     $('#audio_chat')[0].play()

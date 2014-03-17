@@ -17,10 +17,9 @@
     #control_chat
       %textarea#message.form-control{ rows:"3" }
       %a#send_message.btn.btn-danger.btn-block Отправить
-    #messages_admin.messages
 
 
-.list-group
+.list-group#messages_admin
   - @messages.each do |message|
     %a.list-group-item{href: '#', class: ((message.author == 'admin') ? 'list-group-item-warning text-right' : 'list-group-item-success' )}
       %h5.list-group-item-heading

@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    @messages = Message.ne(author: 'admin').desc(:created_at).page(params[:page]).per(35)
+    @messages = Message.desc(:created_at).page(params[:page]).per(35)
   end
 
   # GET /messages/1

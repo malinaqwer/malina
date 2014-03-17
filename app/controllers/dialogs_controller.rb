@@ -11,7 +11,7 @@ class DialogsController < ApplicationController
       @messages = @dialog.messages.desc(:created_at)
       @geo = Geocoder.search @dialog.ip
     end
-    @dialogs = Dialog.desc(:updated_at).page(params[:page]).per(15)
+    @dialogs = Dialog.desc(:last_message).page(params[:page]).per(15)
   end
 
   # GET /dialogs/1

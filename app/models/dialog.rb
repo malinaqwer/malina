@@ -5,10 +5,12 @@ class Dialog
   field :coordinates, type: Array
   field :city, type: String
   field :url_start
+  field :last_message, type: DateTime
   field :done, type: Boolean, default: false
   # field :mail, type: Hash, default: {}
   field :mail, type: String
   has_many :messages
+
 
 
   # before_create :define_location

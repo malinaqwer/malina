@@ -23,12 +23,12 @@
 .list-group
   - @messages.each do |message|
     %a.list-group-item{href: '#', class: ((message.author == 'admin') ? 'list-group-item-warning text-right' : 'list-group-item-success' )}
-      %h5.list-group-item-heading= message.text
-      %small.list-group-item-text
+      %h5.list-group-item-heading
+        = message.text
+      %p.list-group-item-text
         = message.created_at.strftime('%B %e at %l:%M %p')
-        -#= link_to '+', message
-        -#= link_to '/', edit_message_path(message)
-        -#= link_to '-', message, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .text-right
+      = link_to 'ред', edit_message_path(message), class: 'btn btn-default btn-xs'
 
 
 

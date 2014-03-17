@@ -11,12 +11,12 @@ $(document).ready ->
     message_send data
 
   enter = (data) ->
-    a = '<a class="list-group-item list-group-item-danger" href="?dialog=' + data.on + '">
+    a = '<a class="list-group-item active" href="?dialog=' + data.on + '">
           <h5 class="list-group-item-heading">' + data.path + '</h5></a>'
     $('#messages_admin').prepend $(a)
 
   message_send = (data) ->
-    a = '<a class="list-group-item list-group-item-danger" href="?dialog=' + data.id + '">
+    a = '<a class="list-group-item active" href="?dialog=' + data.id + '">
           <h5 class="list-group-item-heading">' + data.text + '</h5></a>'
     $('#messages_admin').prepend $(a)
 

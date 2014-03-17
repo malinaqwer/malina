@@ -11,13 +11,14 @@ $(document).ready ->
     message_send data
 
   enter = (data) ->
-    $('#messages_admin').prepend 'вход на стр: ' + data.path + ' - <a class="btn btn-xs btn-default" href="?dialog=' + data.on + '">' + data.on + '</a>'
-    audio_start data.path
+    a = '<a class="list-group-item list-group-item-danger" href="?dialog=' + data.on + '">
+          <h5 class="list-group-item-heading">' + data.path + '</h5></a>'
+    $('.list-group').prepend $(a)
 
   message_send = (data) ->
-    console.log data
-    $('#messages_admin').prepend '<a class="btn btn-xs btn-default" href="?dialog=' + data.id + '">' + data.text + '</a><br>'
-    audio_start data.text
+    a = '<a class="list-group-item list-group-item-danger" href="?dialog=' + data.id + '">
+          <h5 class="list-group-item-heading">' + data.text + '</h5></a>'
+    $('.list-group').prepend $(a)
 
   audio_start = (data) ->
     $('#audio_chat')[0].play()

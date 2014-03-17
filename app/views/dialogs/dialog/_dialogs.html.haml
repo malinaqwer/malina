@@ -3,7 +3,7 @@
     - messages = dialog.messages
     = link_to params.merge(dialog: dialog.id), class: ('list-group-item' + (' list-group-item-success' if dialog.done).to_s) do
       %h5.list-group-item-heading
-        = (dialog.url_start.split('/').first || 'диалог') if dialog.url_start.present?
+        = (dialog.url_start.split('/') || 'диалог') if dialog.url_start.present?
       %p.list-group-item-text
         - if messages.count > 0
           %span.btn.btn-xs{class: 'btn-danger'}= messages.count

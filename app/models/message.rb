@@ -21,8 +21,12 @@ class Message
       Pusher[dialog_id].trigger('message_send', { id: self.id.to_s, message: {text: self.text, author: 'admin'}})
     elsif self.author == "parya"
       Pusher['admin'].trigger('message_send', { id: dialog_id, text: self.text, author: 'parya' }) unless dialog.done
+      dialog.no_read = '1'
     end
-    dialog.update_attributes(last_message: Time.now) if dialog.present?
+    if dialog.present?
+      dialog.last_message = Time.now
+    end
+    dialog.save!
   end
 
   def update_message

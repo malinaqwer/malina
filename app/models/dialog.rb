@@ -6,6 +6,7 @@ class Dialog
   field :city, type: String
   field :url_start
   field :last_message, type: DateTime
+  field :no_read, type: String
   field :done, type: Boolean, default: false
   # field :mail, type: Hash, default: {}
   field :mail, type: String

@@ -24,7 +24,6 @@ $(document).ready ->
     $('.messages').hover ->
       $('#audio_chat')[0].currentTime = 0
       $('#audio_chat')[0].pause()
-    alert data
 
   doneCap = ->
     id = $(@).attr 'dialog'

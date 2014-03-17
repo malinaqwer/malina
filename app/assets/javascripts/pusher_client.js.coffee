@@ -2,6 +2,9 @@ is_typing_currently = false;
 
 pusher = new Pusher("a471015e307928cc3acb")
 
+firstEnter = ->
+  alert 'Привет! Пиши в чат! Я тут'
+
 
 $(document).ready ->
 
@@ -63,9 +66,11 @@ $(document).ready ->
         update_message data
 
 
-
-      $.each data.messages, (i, v) ->
-        createMessage v
+      if data.messages.length > 0
+        $.each data.messages, (i, v) ->
+          createMessage v
+      else
+        setTimeout(firstEnter, 7000);
 
 
   createMessage = (data) ->

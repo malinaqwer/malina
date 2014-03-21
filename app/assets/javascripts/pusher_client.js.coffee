@@ -121,7 +121,37 @@ $(document).ready ->
   update_message = (data) ->
     $('#' + data.id + ' b').text data.text
 
+  exitDialog = ->
+    # $.get "/dialogs/exit",
+    #   async: false,
+    #   on: localStorage.on
+    # return
+    $.ajax
+      type: "GET"
+      async: false
+      url: "/dialogs/exit"
+      data:
+        on: localStorage.on
+
+
+
 
   $(document).on "click", "#send_message", sendMessage
   $(document).on "click", "#sendEbana", sendEbana
   $(document).on "click", "#deleteReview", deleteReview
+  $(window).on 'beforeunload', exitDialog
+
+
+  # window.onbeforeunload = (e) ->
+  #   # message = "Ждем тебя еще бро, ок?"
+  #   # e = e or window.event
+  #   # # For IE and Firefox
+  #   # e.returnValue = message  if e
+  #
+  #   $.get "/dialogs/exit",
+  #     on: localStorage.on
+  #   , (data) ->
+  #     console.log data
+  #     # localStorage.setItem('on', data.on)
+  #   # For Safari
+  #   # message

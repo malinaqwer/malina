@@ -1,6 +1,6 @@
 class DialogsController < ApplicationController
   before_action :set_dialog, only: [:show, :edit, :update, :destroy]
-  before_action :admin_filter, except: [:enter, :create]
+  before_action :admin_filter, except: [:enter, :create, :exit]
 
   # GET /dialogs
   # GET /dialogs.json
@@ -50,9 +50,15 @@ class DialogsController < ApplicationController
         Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
       end
       render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at).map{|m| {id: m.id.to_s, message: m}} }
+      $redis.sadd('online', @dialog.id.to_s)
     else
       render :nothing
     end
+  end
+
+  def exit
+    $redis.srem('online',  params[:on])
+    render text: 'ok'
   end
 
 

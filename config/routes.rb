@@ -8,6 +8,7 @@ Mongo::Application.routes.draw do
   resources :dialogs do
     get :enter, on: :collection
     get :done, on: :collection
+    get :exit, on: :collection
   end
 
   devise_for :users
@@ -21,7 +22,7 @@ Mongo::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'lands#main'
+  root '500.html'
   get 'sitemap' => 'areas#sitemap'
   get ':id' => 'areas#show'
   get ':id/:page' => 'areas#show'

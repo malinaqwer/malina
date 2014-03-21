@@ -70,3 +70,6 @@ group :development do
 end
 
 gem 'thin'
+
+gem 'redis'
+gem 'hiredis' # optional

@@ -63,7 +63,7 @@ class PagesController < ApplicationController
   end
 
   def hui
-    render text: ''
+    render text: '123'
   end
 
   private

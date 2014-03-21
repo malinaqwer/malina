@@ -62,6 +62,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def hui
+    render text: ''
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
@@ -72,7 +76,7 @@ class PagesController < ApplicationController
     def page_params
       params.require(:page).permit(:title)
     end
-    
+
     def admin_user
       redirect_to root_path unless current_user.try(:admin)
     end

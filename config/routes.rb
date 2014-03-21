@@ -14,7 +14,9 @@ Mongo::Application.routes.draw do
   devise_for :users
   resources :users
 
-  resources :pages
+  resources :pages do
+    get :hui
+  end
 
   resources :areas
 

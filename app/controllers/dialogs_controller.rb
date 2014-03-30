@@ -38,7 +38,7 @@ class DialogsController < ApplicationController
 
 
   def enter
-    unless request.remote_ip.include?('66.249.66') || request.remote_ip.include?('66.249.76') || request.remote_ip.include?('66.249.64')
+    unless request.remote_ip.include?('66.249.66') || request.remote_ip.include?('66.249.76') || request.remote_ip.include?('66.249.64') || request.remote_ip.include?('66.249.67')
       if params[:on].present?
         @dialog = Dialog.where(id: params[:on]).first || Dialog.create(ip: request.remote_ip, url_start: params[:url])
       else

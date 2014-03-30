@@ -3,7 +3,7 @@ is_typing_currently = false;
 pusher = new Pusher("a471015e307928cc3acb")
 
 firstEnter = ->
-  alert 'Привет! Пиши в чат! Я тут'
+  alert 'Здравствуйте. Мы работаем. Напишите какой продукт из прайса хотите приобрести? Я помогу разобраться.'
 
 
 $(document).ready ->

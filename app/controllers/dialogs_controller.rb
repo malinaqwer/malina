@@ -40,6 +40,8 @@ class DialogsController < ApplicationController
     m = Message.find params[:message]
     @message = Message.new(dialog_id: params[:dialog], text: m.text, author: 'admin')
     if @message.save
+      m.k += 1
+      m.save
       render json: {id: params[:dialog], text: @message.text}
     end
   end

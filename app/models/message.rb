@@ -3,7 +3,7 @@ class Message
   include Mongoid::Timestamps
   field :author, type: String
   field :text, type: String
-  field :k, type: Integer
+  field :k, type: Integer, default: 0
 
   scope :iqs, -> {where(author: 'iq')}
 

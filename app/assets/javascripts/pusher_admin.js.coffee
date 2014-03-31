@@ -33,9 +33,8 @@ $(document).ready ->
     , (data) ->
       alert data
 
-  insertToDialog = (id) ->
-    message = $(@).attr 'message'
-    message = id
+  insertToDialog = ->
+    message = $(@).attr 'id'
     dialog = $('#dialog_id').text()
     $.get "/dialogs/insert",
       message: message,
@@ -68,19 +67,19 @@ $(document).ready ->
       $("#loading").fadeOut()
       is_typing_currently = false
 
-  $ ->
-    $(".insert-to-dialog").draggable
-      revert: true
-    $("#messages_admin").droppable drop: (event, ui) ->
-      insertToDialog ui.draggable.attr('id')
-      return
-
-    $("#message").droppable drop: (event, ui) ->
-      $(@).val ui.draggable.find('small').text()
-      return
-
-    return
+  # $ ->
+  #   $(".insert-to-dialog").draggable
+  #     revert: true
+  #   $("#messages_admin").droppable drop: (event, ui) ->
+  #     insertToDialog ui.draggable.attr('id')
+  #     return
+  #
+  #   $("#message").droppable drop: (event, ui) ->
+  #     $(@).val ui.draggable.find('small').text()
+  #     return
+  #
+  #   return
 
   $(document).on "click", "#send_message", sendMessage
   $(document).on "click", "#done", doneCap
-  # $(document).on "click", ".insert-to-dialog", insertToDialog
+  $(document).on "click", ".insert-to-dialog", insertToDialog

@@ -9,6 +9,7 @@ Mongo::Application.routes.draw do
     get :enter, on: :collection
     get :done, on: :collection
     get :exit, on: :collection
+    get :insert, on: :collection
   end
 
   devise_for :users

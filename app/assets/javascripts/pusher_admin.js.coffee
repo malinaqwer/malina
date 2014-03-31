@@ -33,9 +33,14 @@ $(document).ready ->
     , (data) ->
       alert data
 
-  copyText = ->
-    what = $(@).attr 'message'
-    $('textarea#message').val what
+  insertToDialog = ->
+    message = $(@).attr 'message'
+    dialog = $('#dialog_id').text()
+    $.get "/dialogs/insert",
+      message: message,
+      dialog: dialog,
+    , (data) ->
+      console.log data
 
 
 
@@ -68,4 +73,4 @@ $(document).ready ->
 
   $(document).on "click", "#send_message", sendMessage
   $(document).on "click", "#done", doneCap
-  $(document).on "click", ".list-group-item", copyText
+  $(document).on "click", ".insert-to-dialog", insertToDialog

@@ -1,3 +1,4 @@
 .list-group
   - Message.iqs.each do |message|
-    %small.list-group-item= message.text
+    %a.list-group-item.insert-to-dialog{href: '#', message: message.id}
+      %small.list-group-item-text= message.text

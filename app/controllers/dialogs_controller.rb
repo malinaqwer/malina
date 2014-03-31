@@ -36,6 +36,11 @@ class DialogsController < ApplicationController
     render text: 'заблокирован'
   end
 
+  def insert
+    m = Message.find params[:message]
+    @message = Message.new(dialog_id: params[:dialog], text: m.text, author: 'admin')
+    render text: @message.id.to_s if @message.save
+  end
 
   def enter
     unless request.remote_ip.include?('66.249.66') || request.remote_ip.include?('66.249.76') || request.remote_ip.include?('66.249.64') || request.remote_ip.include?('66.249.67')

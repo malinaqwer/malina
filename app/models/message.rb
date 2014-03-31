@@ -25,8 +25,8 @@ class Message
     end
     if dialog.present?
       dialog.last_message = Time.now
+      dialog.save!
     end
-    dialog.save!
   end
 
   def update_message

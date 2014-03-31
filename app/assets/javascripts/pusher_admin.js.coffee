@@ -38,9 +38,10 @@ $(document).ready ->
     dialog = $('#dialog_id').text()
     $.get "/dialogs/insert",
       message: message,
-      dialog: dialog,
+      dialog: dialog
     , (data) ->
-      console.log data
+      message_send data
+    false
 
 
 

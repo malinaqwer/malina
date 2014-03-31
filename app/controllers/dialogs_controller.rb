@@ -39,7 +39,9 @@ class DialogsController < ApplicationController
   def insert
     m = Message.find params[:message]
     @message = Message.new(dialog_id: params[:dialog], text: m.text, author: 'admin')
-    render text: @message.id.to_s if @message.save
+    if @message.save
+      render json: {id: params[:dialog], text: @message.text}
+    end
   end
 
   def enter

@@ -139,7 +139,7 @@ $(document).ready ->
   $(document).on "click", "#send_message", sendMessage
   $(document).on "click", "#sendEbana", sendEbana
   $(document).on "click", "#deleteReview", deleteReview
-  $(window).on 'beforeunload', exitDialog
+  # $(window).on 'beforeunload', exitDialog
 
 
   # window.onbeforeunload = (e) ->

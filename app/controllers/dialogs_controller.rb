@@ -38,16 +38,19 @@ class DialogsController < ApplicationController
 
   def insert
     m = Message.find params[:message]
-    @message = Message.new(dialog_id: params[:dialog], text: m.text, author: 'admin')
+    dialog = Dialog.find params[:dialog]
+    last = dialog.messages.parya.last
+    @message = Message.new(dialog_id: dialog.id, text: m.text, author: 'admin')
     if @message.save
       m.k += 1
+      m.sensors << last.text
       m.save
       render json: {id: params[:dialog], text: @message.text}
     end
   end
 
   def enter
-    unless request.remote_ip.include?('66.249.66') || request.remote_ip.include?('66.249.76') || request.remote_ip.include?('66.249.64') || request.remote_ip.include?('66.249.67')
+    unless ['66.249.66','66.249.76','66.249.64', '66.249.67'].any? { |word| request.remote_ip.include?(word) }
       if params[:on].present?
         @dialog = Dialog.where(id: params[:on]).first || Dialog.create(ip: request.remote_ip, url_start: params[:url])
       else
@@ -58,7 +61,8 @@ class DialogsController < ApplicationController
         # ParyaEmail.enter(@dialog.id).deliver
         Pusher['admin'].trigger('enter', { on: @dialog.id.to_s, path: params[:path], city: @dialog.city, ip: @dialog.ip, coord: @dialog.coordinates, new: @dialog.new_record? })
       end
-      render json: {on: @dialog.id.to_s, status: 'ok', messages: @dialog.messages.desc(:created_at).map{|m| {id: m.id.to_s, message: m}} }
+      messages = @dialog.messages
+      render json: {on: @dialog.id.to_s, status: 'ok', messages: messages.desc(:created_at).map{|m| {id: m.id.to_s, message: m}} }
       $redis.sadd('online', @dialog.id.to_s)
     else
       render :nothing

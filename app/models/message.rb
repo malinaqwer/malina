@@ -30,7 +30,7 @@ class Message
       dialog.last_message = Time.now
       dialog.save!
     end
-    message_iq_send(self, dialog) if self.author == "parya"
+    # message_iq_send(self, dialog) if self.author == "parya"
   end
 
   def message_iq_send message, dialog
